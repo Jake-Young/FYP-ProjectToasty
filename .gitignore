@@ -3,13 +3,10 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Mm]odels/
 Assets/AssetStoreTools*
 Assets/Third\ Party/*
-<<<<<<< HEAD
-Assets/Demonstrations*
-=======
 Assets/Demonstrations/*
->>>>>>> 6472f8fc751f99c03a2214c74ec35f529dec9a74
 
 # Visual Studio cache directory
 .vs/
