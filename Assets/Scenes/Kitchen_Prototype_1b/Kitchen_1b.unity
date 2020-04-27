@@ -12338,7 +12338,12 @@ MonoBehaviour:
   maxStep: 0
   m_GameState: {fileID: 1416110108}
   m_MLManager: {fileID: 1416110107}
-  m_LeftController: {fileID: 8105841480204172248}
+  m_EndEffector: {fileID: 0}
+  m_StartingPosition: {x: 0, y: 0, z: 0}
+  m_FollowMe: {fileID: 0}
+  m_AgentPlayback: {fileID: 0}
+  m_GrabObjectPlayback: {fileID: 0}
+  m_IsLive: 0
 --- !u!114 &985607208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17394,6 +17399,7 @@ MonoBehaviour:
   m_Plate: {fileID: 57778690}
   m_Toaster: {fileID: 1975820253}
   m_Stove: {fileID: 426781901}
+  m_RawEgg2FriedEgg: {fileID: 0}
   m_UncrackedEggs:
   - {fileID: 976707050}
   - {fileID: 785766286}
@@ -25720,7 +25726,7 @@ PrefabInstance:
     - target: {fileID: 7427010573124903702, guid: 1fdc25ae4834ecb468addff9a2816ddf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7427010573124903702, guid: 1fdc25ae4834ecb468addff9a2816ddf,
         type: 3}
@@ -26187,7 +26193,7 @@ PrefabInstance:
     - target: {fileID: 1382487675189233801, guid: 980b41dbc240ca04a9cca22bf1cf0be7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1382487675189233801, guid: 980b41dbc240ca04a9cca22bf1cf0be7,
         type: 3}
