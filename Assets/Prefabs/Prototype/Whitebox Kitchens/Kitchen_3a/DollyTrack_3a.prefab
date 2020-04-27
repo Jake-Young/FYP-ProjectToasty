@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2124428379546143435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124428379546143429}
+  - component: {fileID: 2124428379546143428}
+  m_Layer: 0
+  m_Name: DollyTrack Arm 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2124428379546143429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124428379546143435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2124428379546143428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124428379546143435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: -1.9021572, y: 0, z: -3.9433262}
+    roll: 0
+  - position: {x: -1.8997669, y: 0, z: -0.7973104}
+    roll: 0
+  - position: {x: -1.8949957, y: 0, z: 1.6039236}
+    roll: 0
+  - position: {x: -1.894018, y: 0, z: 2.3767676}
+    roll: 0
+  - position: {x: -1.8007419, y: 0, z: 2.815763}
+    roll: 0
+  - position: {x: -1.2471281, y: 0, z: 2.894353}
+    roll: 0
+  - position: {x: 0.23784205, y: 0, z: 2.894353}
+    roll: 0
+  - position: {x: 1.8805338, y: 0, z: 2.894353}
+    roll: 0
+  - position: {x: 2.39794, y: 0, z: 2.8943532}
+    roll: 0
+  - position: {x: 2.784194, y: 0, z: 2.5147734}
+    roll: 0
+  - position: {x: 1.9555893, y: 0, z: 0.9712882}
+    roll: 0
+  - position: {x: 1.6493044, y: 0, z: 0.3172866}
+    roll: 0
+  - position: {x: 1.6261923, y: 0, z: -0.68269527}
+    roll: 0
+  - position: {x: 1.6284478, y: 0, z: -1.9807465}
+    roll: 0
+  - position: {x: 1.6370454, y: 0, z: -2.3719053}
+    roll: 0
+  - position: {x: 1.6393011, y: 0, z: -2.4957323}
+    roll: 0
+  - position: {x: 1.4329915, y: 0, z: -2.5199265}
+    roll: 0
+  - position: {x: 1.0073364, y: 0, z: -2.5179303}
+    roll: 0
+  - position: {x: 0.105746195, y: 0, z: -2.5224814}
+    roll: 0
+  - position: {x: -0.098689616, y: 0, z: -2.465831}
+    roll: 0
+  - position: {x: -0.09717623, y: 0, z: -2.0945525}
+    roll: 0
+  - position: {x: -0.09566285, y: 0, z: 0.59139323}
+    roll: 0

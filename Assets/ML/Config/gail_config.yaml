@@ -1,0 +1,128 @@
+default:
+    trainer: ppo
+    batch_size: 1024
+    beta: 5.0e-3
+    buffer_size: 10240
+    epsilon: 0.2
+    hidden_units: 128
+    lambd: 0.95
+    learning_rate: 3.0e-4
+    max_steps: 5.0e5
+    memory_size: 256
+    normalize: false
+    num_epoch: 3
+    num_layers: 2
+    time_horizon: 64
+    sequence_length: 64
+    summary_freq: 10000
+    use_recurrent: false
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+
+CookingAMealOLD:
+    behavioral_cloning:
+        demo_path: Assets/Demonstrations/CookingAMealTest_0.demo
+        strength: 1.0
+        steps: 150000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+
+CookingAMealPPO:
+    summary_freq: 30000
+    time_horizon: 512
+    batch_size: 128
+    buffer_size: 2048
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets/Demonstrations/CookingAMealTest_3.demo
+        strength: 0.9
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+        curiosity:
+            strength: 0.02
+            gamma: 0.99
+            encoding_size: 256
+        gail:
+            strength: 0.01
+            gamma: 0.99
+            encoding_size: 128
+            demo_path: Assets/Demonstrations/CookingAMealTest_3.demo
+
+CookingAMealSAC:
+    trainer: sac
+    buffer_size: 50000
+    buffer_init_steps: 1000
+    batch_size: 512
+    init_entcoef: 0.5
+    train_interval: 1
+    num_update: 1
+    tau: 0.005
+    learning_rate: 1.0e-5
+    time_horizon: 2048
+    max_steps: 1.0e7
+    normalize: true
+    num_layers: 3
+    hidden_units: 512
+    behavioral_cloning:
+        demo_path: Assets/Demonstrations/CookingAMealTest_0.demo
+        strength: 0.9
+        steps: 500000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+        curiosity:
+            strength: 0.02
+            gamma: 0.99
+            encoding_size: 256
+
+
+ #       curiosity:
+ #           strength: 0.02
+ #           gamma: 0.99
+ #           encoding_size: 256
+ #       gail:
+ #           strength: 0.01
+ #           gamma: 0.99
+ #           encoding_size: 128
+ #           demo_path: Assets/Demonstrations/CookingAMealTest_0.demo
+
+Pyramids:
+    summary_freq: 30000
+    time_horizon: 128
+    batch_size: 128
+    buffer_size: 2048
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Project/Assets/ML-Agents/Examples/Pyramids/Demos/ExpertPyramid.demo
+        strength: 0.5
+        steps: 150000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+        curiosity:
+            strength: 0.02
+            gamma: 0.99
+            encoding_size: 256
+        gail:
+            strength: 0.01
+            gamma: 0.99
+            encoding_size: 128
+            demo_path: Project/Assets/ML-Agents/Examples/Pyramids/Demos/ExpertPyramid.demo
+
