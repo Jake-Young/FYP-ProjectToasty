@@ -2,7 +2,7 @@
 
 public class PanSocket : Socket
 {
-    public RawEgg2FriedEgg m_EggCooker;
+    public PanOnStove m_PanOnStove;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -10,11 +10,11 @@ public class PanSocket : Socket
         {
             Debug.Log(m_PositiveCollisionTag);
             other.gameObject.layer = 11;
-            m_EggCooker.PanIsOnStove();
+            m_PanOnStove.PanIsOnStove();
         }
         else if (m_NegativeCollisionTag != "" && other.gameObject.tag == m_NegativeCollisionTag)
         {
-            m_CookingAgent.AddReward(m_MLManager.m_IsBurntPoints);
+            m_CookingAgent.SetReward(-1);
             Debug.Log("End");
             m_CookingAgent.EndEpisode();
         }
@@ -24,7 +24,7 @@ public class PanSocket : Socket
     {
         if (other.gameObject.tag == m_PositiveCollisionTag)
         {
-            m_EggCooker.PanIsOffStove();
+            m_PanOnStove.PanIsOffStove();
         }
     }
 }

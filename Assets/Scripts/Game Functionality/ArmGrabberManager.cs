@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using MLAgents;
 
-public class ArmTargetManager : MonoBehaviour
+public class ArmGrabberManager : MonoBehaviour
 {
-    public MachineLearningManager m_MachineLearningManager;
+    public GrabberEnvironmentListener m_Listerner;
     public Agent m_Agent;
 
     [SerializeField]
@@ -18,32 +18,32 @@ public class ArmTargetManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_MachineLearningManager.m_ArmTargetActivated)
+        if (m_Listerner.m_ArmTargetActivated)
         {
             this.transform.position = m_ControllerToFollow.position;
             this.transform.rotation = m_ControllerToFollow.rotation;
         }
 
-        m_Attach = m_MachineLearningManager.m_GrabObject;
+        m_Attach = m_Listerner.m_GrabObject;
     }
 
     public void ActivateArmTarget(Transform controllerToFollow)
     {
-        if (!m_MachineLearningManager.m_ArmTargetActivated)
+        if (!m_Listerner.m_ArmTargetActivated)
         {
             m_ControllerToFollow = controllerToFollow;
-            m_MachineLearningManager.m_Target = this.transform;
-            m_MachineLearningManager.m_ArmTargetActivated = true;
+            m_Listerner.m_Target = this.transform;
+            m_Listerner.m_ArmTargetActivated = true;
         }
     }
 
     public void DeactivateArmTarget()
     {
-        if (m_MachineLearningManager.m_ArmTargetActivated)
+        if (m_Listerner.m_ArmTargetActivated)
         {
             m_ControllerToFollow = null;
-            m_MachineLearningManager.m_Target = null;
-            m_MachineLearningManager.m_ArmTargetActivated = false;
+            m_Listerner.m_Target = null;
+            m_Listerner.m_ArmTargetActivated = false;
         }
     }
 
@@ -52,18 +52,22 @@ public class ArmTargetManager : MonoBehaviour
         if (other.gameObject.tag == "End Effector")
         {
             m_EndEffectorCollider = other;
-            m_MachineLearningManager.m_IsEndEffectorAtTarget = true;
+            m_Listerner.m_IsEndEffectorAtTarget = true;
         }
 
         // Constantly add a small amount of points on each trigger stay call
         if (other.gameObject.layer == 9)
         {
-            m_Agent.AddReward(m_MachineLearningManager.m_ObjectGrabbablePoints);
+            m_Agent.AddReward(m_Listerner.m_ObjectGrabbablePoints);
 
             if (m_Attach && m_EndEffectorCollider != null)
             {
+                m_Agent.AddReward(m_Listerner.m_ObjectGrabbablePoints);
+
                 if (!m_Attached)
                 {
+                    m_Agent.AddReward(m_Listerner.m_GrabObjectPoints);
+
                     m_OriginalParent = other.gameObject.transform.parent;
 
                     other.gameObject.transform.position = this.transform.position;
@@ -99,7 +103,7 @@ public class ArmTargetManager : MonoBehaviour
         if (m_EndEffectorCollider != null && other.gameObject.tag == "End Effector")
         {
             m_EndEffectorCollider = null;
-            m_MachineLearningManager.m_IsEndEffectorAtTarget = false;
+            m_Listerner.m_IsEndEffectorAtTarget = false;
         }
     }
 }

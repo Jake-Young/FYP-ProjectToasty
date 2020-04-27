@@ -2,6 +2,7 @@
 
 public class PlateEggSocket : Socket
 {
+    public MachineLearningManager m_MLManager;
     private void OnTriggerEnter(Collider other)
     {
         FriedEgg friedEgg = other.gameObject.GetComponent<FriedEgg>();

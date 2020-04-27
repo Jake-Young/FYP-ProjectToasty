@@ -20,7 +20,6 @@ public class FollowPath : MonoBehaviour
     {
         float closestPathPos = m_PathToFollow.FindClosestPoint(m_Target.position, m_StartingSegment, m_SearchRadius, m_NumOfSegments);
         float distanceFromMaxPos = m_PathToFollow.MaxPos - m_DollyCart.m_Position;
-        //Debug.Log($"From Max: {distanceFromMaxPos}");
 
         // Mid point of path based on max length
         float midPoint = m_PathToFollow.MaxPos / 2.0f;

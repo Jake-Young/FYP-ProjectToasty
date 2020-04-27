@@ -58,6 +58,10 @@ public class MachineLearningManager : MonoBehaviour
     private Vector3[] m_OriginalCrackedEggPos;
     private Quaternion[] m_OriginalCrackedEggRot;
 
+    public Transform[] m_SpawnPoints;
+    public Transform m_WorktopSpawner;
+    public Transform m_OvenSpawner;
+
     [Space]
     [Header("Pan")]
     public bool m_IsPanOnStove = false;
@@ -110,35 +114,50 @@ public class MachineLearningManager : MonoBehaviour
 
     private void Start()
     {
-        m_OriginalPlatePos = m_Plate.transform.position;
-        m_OriginalPlateRot = m_Plate.transform.rotation;
-
-        m_OriginalPanPos = m_Pan.transform.position;
-        Debug.Log("OG Pan Pos 1: " + m_OriginalPanPos);
-        m_OriginalPanRot = m_Pan.transform.rotation;
-
-        m_OriginalBreadPos = new Vector3[2];
-        m_OriginalBreadRot = new Quaternion[2];
-        for (int i = 0; i < m_Breads.Length; i++)
+        if (m_Plate != null)
         {
-            m_OriginalBreadPos[i] = m_Breads[i].transform.position;
-            m_OriginalBreadRot[i] = m_Breads[i].transform.rotation;
+            m_OriginalPlatePos = m_Plate.transform.position;
+            m_OriginalPlateRot = m_Plate.transform.rotation;
         }
 
-        m_OriginalUncrackedEggPos = new Vector3[2];
-        m_OriginalUncrackedEggRot = new Quaternion[2];
-        for (int i = 0; i < m_UncrackedEggs.Length; i++)
+        if (m_Pan != null)
         {
-            m_OriginalUncrackedEggPos[i] = m_UncrackedEggs[i].transform.position;
-            m_OriginalUncrackedEggRot[i] = m_UncrackedEggs[i].transform.rotation;
+            m_OriginalPanPos = m_Pan.transform.position;
+            Debug.Log("OG Pan Pos 1: " + m_OriginalPanPos);
+            m_OriginalPanRot = m_Pan.transform.rotation;
         }
 
-        m_OriginalCrackedEggPos = new Vector3[2];
-        m_OriginalCrackedEggRot = new Quaternion[2];
-        for (int i = 0; i < m_CrackEggs.Length; i++)
+        if (m_Breads.Length == 0)
         {
-            m_OriginalCrackedEggPos[i] = m_CrackEggs[i].transform.position;
-            m_OriginalCrackedEggRot[i] = m_CrackEggs[i].transform.rotation;
+            m_OriginalBreadPos = new Vector3[2];
+            m_OriginalBreadRot = new Quaternion[2];
+            for (int i = 0; i < m_Breads.Length; i++)
+            {
+                m_OriginalBreadPos[i] = m_Breads[i].transform.position;
+                m_OriginalBreadRot[i] = m_Breads[i].transform.rotation;
+            }
+        }
+
+        if (m_UncrackedEggs.Length == 0)
+        {
+            m_OriginalUncrackedEggPos = new Vector3[2];
+            m_OriginalUncrackedEggRot = new Quaternion[2];
+            for (int i = 0; i < m_UncrackedEggs.Length; i++)
+            {
+                m_OriginalUncrackedEggPos[i] = m_UncrackedEggs[i].transform.position;
+                m_OriginalUncrackedEggRot[i] = m_UncrackedEggs[i].transform.rotation;
+            }
+        }
+
+        if (m_CrackEggs.Length == 0)
+        {
+            m_OriginalCrackedEggPos = new Vector3[2];
+            m_OriginalCrackedEggRot = new Quaternion[2];
+            for (int i = 0; i < m_CrackEggs.Length; i++)
+            {
+                m_OriginalCrackedEggPos[i] = m_CrackEggs[i].transform.position;
+                m_OriginalCrackedEggRot[i] = m_CrackEggs[i].transform.rotation;
+            }
         }
     }
 
@@ -159,16 +178,6 @@ public class MachineLearningManager : MonoBehaviour
             m_GrabObject = false;
         }
     }
-
-    /*    public void DropObject()
-        {
-            Debug.Log("Drop");
-            if (m_IsEndEffectorAtTarget == true && m_GrabObject == true)
-            {
-                Debug.Log("Pickup False");
-                m_GrabObject = false;
-            }
-        }*/
 
     // Set OnGrabPoints
     public void OnGrabAddPoints ()
@@ -193,7 +202,6 @@ public class MachineLearningManager : MonoBehaviour
     public void IsToastOnPlate ()
     {
         m_IsToastOnPlate = true;
-        //m_CookingAgent.SetReward(m_IsToastOnPlatePoints);
     }
 
     public void IsToastOffPlate ()
@@ -228,6 +236,7 @@ public class MachineLearningManager : MonoBehaviour
         m_GrabObject = false;
 
         // Environment Values
+
         // Pan
         m_IsPanOnStove = false;
         // Toast
@@ -250,11 +259,6 @@ public class MachineLearningManager : MonoBehaviour
     {
         Debug.Log("Environment Reset");
 
-        /*        foreach (var bread in m_Breads)
-                {
-                    bread.GetComponent<ToastyBread>().ResetToast();
-                }*/
-
         m_RawEgg2FriedEgg.Reset2RawEgg();
 
         foreach (var egg in m_CrackEggs)
@@ -269,21 +273,38 @@ public class MachineLearningManager : MonoBehaviour
             uncrackedEgg.GetComponent<CrackEgg>().ResetUncrackedEgg();
         }
 
-        /*        for (int i = 0; i < m_UncrackedEggs.Length; i++)
-                {
-                    m_UncrackedEggs[i].transform.position = m_OriginalUncrackedEggPos[i];
-                    m_UncrackedEggs[i].transform.rotation = m_OriginalUncrackedEggRot[i];
-                    m_UncrackedEggs[i].GetComponent<Rigidbody>().isKinematic = true;
-                    //m_UncrackedEggs[i].GetComponent<Rigidbody>().useGravity = false;
-                    m_UncrackedEggs[i].SetActive(true);
-                }*/
-
         m_Pan.GetComponent<Rigidbody>().isKinematic = true;
         m_Pan.transform.parent = m_ParentEnvrionment;
         m_Pan.transform.position = m_OriginalPanPos;
         m_Pan.transform.rotation = m_OriginalPanRot;
         m_Pan.layer = 9;
         
+        m_GameState.ResetGameState();
+        ResetManager();
+    }
+
+    public void ResetGrabber()
+    {
+        Debug.Log("Grabber Reset");
+
+        int randomNum = Random.Range(0, 8);
+
+        m_WorktopSpawner.transform.localPosition = m_SpawnPoints[randomNum].localPosition;
+        m_WorktopSpawner.transform.rotation = m_SpawnPoints[randomNum].rotation;
+
+        m_OvenSpawner.transform.localPosition = m_SpawnPoints[randomNum].localPosition;
+        m_OvenSpawner.transform.rotation = m_SpawnPoints[randomNum].rotation;
+
+        m_Pan.transform.parent = m_ParentEnvrionment;
+        m_Pan.transform.position = m_OriginalPanPos;
+
+        Vector3 randomRot = new Vector3(m_OriginalPanRot.eulerAngles.x,
+                                        m_OriginalPanRot.eulerAngles.y * Random.Range(1.0f, 10.0f),
+                                        m_OriginalPanRot.eulerAngles.z);
+
+        m_Pan.transform.rotation = Quaternion.Euler(randomRot);
+        m_Pan.layer = 9;
+
         m_GameState.ResetGameState();
         ResetManager();
     }
