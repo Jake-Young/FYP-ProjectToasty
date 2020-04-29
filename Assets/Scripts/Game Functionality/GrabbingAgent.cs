@@ -18,6 +18,8 @@ public class GrabbingAgent : Agent
         Debug.Log("Begin Episode");
 
         m_Listener.ResetGrabber();
+
+        this.transform.localPosition = m_StartingPosition;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -53,21 +55,21 @@ public class GrabbingAgent : Agent
         }
         else
         {
-            AddReward(-0.005f);
+            AddReward(-0.001f);
         }
 
         if (this.transform.localPosition.x >= 1.285f || this.transform.localPosition.x <= -1.285f)
         {
-            Debug.Log("Breached: X");
-            SetReward(-1);
+            //Debug.Log("Breached: X");
+            //SetReward(-1);
             if (!m_IsLive) { this.transform.localPosition = m_StartingPosition; }
             EndEpisode();
         }
 
         if (this.transform.localPosition.y < 0.9f)
         {
-            Debug.Log("Too Low: " + this.transform.localPosition.y);
-            SetReward(-1);
+            //Debug.Log("Too Low: " + this.transform.localPosition.y);
+            //SetReward(-1);
             if (!m_IsLive) { this.transform.localPosition = m_StartingPosition; }
 
             EndEpisode();
@@ -75,8 +77,8 @@ public class GrabbingAgent : Agent
 
         if (this.transform.localPosition.y >= 6.0f)
         {
-            Debug.Log("Too High");
-            SetReward(-1);
+            //Debug.Log("Too High");
+            //SetReward(-1);
             if (!m_IsLive) { this.transform.localPosition = m_StartingPosition; }
 
             EndEpisode();
@@ -84,8 +86,8 @@ public class GrabbingAgent : Agent
 
         if (this.transform.localPosition.z >= 1.285 || this.transform.localPosition.z <= -1.285)
         {
-            Debug.Log("Breached: Z");
-            SetReward(-1);
+            //Debug.Log("Breached: Z");
+            //SetReward(-1);
             if (!m_IsLive) { this.transform.localPosition = m_StartingPosition; }
 
             EndEpisode();

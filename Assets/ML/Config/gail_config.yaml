@@ -88,19 +88,9 @@ CookingAMealSAC:
             encoding_size: 256
 
 
- #       curiosity:
- #           strength: 0.02
- #           gamma: 0.99
- #           encoding_size: 256
- #       gail:
- #           strength: 0.01
- #           gamma: 0.99
- #           encoding_size: 128
- #           demo_path: Assets/Demonstrations/CookingAMealTest_0.demo
-
-Pyramids:
+CookingAMealPPO:
     summary_freq: 30000
-    time_horizon: 128
+    time_horizon: 512
     batch_size: 128
     buffer_size: 2048
     hidden_units: 512
@@ -109,9 +99,9 @@ Pyramids:
     max_steps: 1.0e7
     num_epoch: 3
     behavioral_cloning:
-        demo_path: Project/Assets/ML-Agents/Examples/Pyramids/Demos/ExpertPyramid.demo
-        strength: 0.5
-        steps: 150000
+        demo_path: Assets/Demonstrations/CookingAMealTest_3.demo
+        strength: 0.9
+        steps: 300000
     reward_signals:
         extrinsic:
             strength: 1.0
@@ -124,5 +114,176 @@ Pyramids:
             strength: 0.01
             gamma: 0.99
             encoding_size: 128
-            demo_path: Project/Assets/ML-Agents/Examples/Pyramids/Demos/ExpertPyramid.demo
+            demo_path: Assets/Demonstrations/CookingAMealTest_3.demo
 
+            
+GrabbingAnObject8:
+    summary_freq: 30000
+    time_horizon: 512
+    batch_size: 512
+    buffer_size: 5120
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.9
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.995
+        curiosity:
+            strength: 0.05
+            gamma: 0.995
+            encoding_size: 128
+
+GrabbingAnObject9:
+    summary_freq: 30000
+    time_horizon: 512
+    batch_size: 512
+    buffer_size: 5120
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.9
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.995
+        curiosity:
+            strength: 0.05
+            gamma: 0.995
+            encoding_size: 128
+        gail:
+            strength: 0.01
+            gamma: 0.99
+            encoding_size: 128
+            demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+
+
+GrabbingAnObject10:
+    summary_freq: 30000
+    time_horizon: 128 # changed
+    batch_size: 1024 # changed
+    buffer_size: 10240 # changed
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.6 #changed
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.995
+        curiosity:
+            strength: 0.1 # changed
+            gamma: 0.995
+            encoding_size: 256 # changed
+
+
+GrabbingAnObject11:
+    summary_freq: 30000
+    time_horizon: 128 
+    batch_size: 1024
+    buffer_size: 10240
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.6
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.995
+        curiosity:
+            strength: 0.05 #changed
+            gamma: 0.995
+            encoding_size: 128
+        gail:
+            strength: 0.1 #changed
+            gamma: 0.99
+            encoding_size: 256
+            use_actions: true #added
+            demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+
+GrabbingAnObject12:
+    summary_freq: 30000
+    time_horizon: 1024 # changed
+    batch_size: 1024
+    buffer_size: 10240
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.6 
+        steps: 300000
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.995
+        curiosity:
+            strength: 0.05
+            gamma: 0.995
+            encoding_size: 128
+        gail:
+            strength: 0.1
+            gamma: 0.9 # changed
+            encoding_size: 128 # changed
+            use_actions: true 
+            demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+
+
+GrabbingAnObject13:
+    summary_freq: 30000
+    time_horizon: 512 # changed
+    batch_size: 512
+    buffer_size: 5120
+    hidden_units: 512
+    num_layers: 2
+    beta: 1.0e-2
+    max_steps: 1.0e7
+    num_epoch: 3
+    behavioral_cloning:
+        demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+        strength: 0.9 
+        steps: 300000
+    reward_signals:
+        curiosity:
+            strength: 0.05
+            gamma: 0.995
+            encoding_size: 128
+        gail:
+            strength: 0.1
+            gamma: 0.9 # changed
+            encoding_size: 128 # changed
+            demo_path: Assets//Demonstrations/GrabbingAnObject_0.demo
+
+
+ #       curiosity:
+ #           strength: 0.02
+ #           gamma: 0.99
+ #           encoding_size: 256
+ #       gail:
+ #           strength: 0.01
+ #           gamma: 0.99
+ #           encoding_size: 128
+ #           demo_path: Assets/Demonstrations/CookingAMealTest_0.demo
