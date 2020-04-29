@@ -3,11 +3,11 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-[Aa]ll\ Models/
+[Aa]llModels/
 [Aa]ssets/AssetStoreTools*
-[Aa]sets/Third\ Party/
+[Aa]sets/ThirdParty/
 [Aa]ssets/Demonstrations/
-[Aa]ssets/Saved\ Models/
+[Aa]ssets/SavedModels/
 
 # Visual Studio cache directory
 .vs/
