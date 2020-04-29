@@ -19,7 +19,6 @@ public class OnPrimary2DAxisMoved : UnityEvent<Vector2> { }
 public class OnSecondary2DAxisMoved : UnityEvent<Vector2> { }
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(XRControllerInput))]
 [AddComponentMenu("XR/XR Controller Input")]
 public class XRControllerInput : MonoBehaviour
 {
