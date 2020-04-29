@@ -31,8 +31,15 @@ public class CookingAgent : Agent
 
         if (!m_IsLive)
         {
-            m_AgentPlayback.Play("AgentClip", -1, 0.0f);
-            m_GrabObjectPlayback.Play("GrabObjectClip", -1, 0.0f);
+            if (m_AgentPlayback != null)
+            {
+                m_AgentPlayback.Play("AgentClip", -1, 0.0f);
+            }
+
+            if (m_GrabObjectPlayback != null)
+            {
+                m_GrabObjectPlayback.Play("GrabObjectClip", -1, 0.0f);
+            }
         }
     }
 
