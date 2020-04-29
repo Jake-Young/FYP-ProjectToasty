@@ -5,9 +5,9 @@
 [Bb]uilds/
 [Aa]ll\ Models/
 [Aa]ssets/AssetStoreTools*
-[Aa]sets/Third\ Party/*
-[Aa]ssets/Demonstrations/*
-[Aa]ssets/Saved\ Models/*
+[Aa]sets/Third\ Party/
+[Aa]ssets/Demonstrations/
+[Aa]ssets/Saved\ Models/
 
 # Visual Studio cache directory
 .vs/
