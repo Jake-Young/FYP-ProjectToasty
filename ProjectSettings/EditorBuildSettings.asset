@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Kitchen_Prototype_1b/Kitchen_1b.unity
+    path: Assets/Scenarios/Scenario 1/Training_Scenario_1.unity
     guid: 63cd6de6dd6d6254399b7e4e166e2569
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 572c9df7687df9d499aa5e0d455bab48,
