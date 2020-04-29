@@ -31,8 +31,11 @@ public class CrackEgg : MonoBehaviour
             m_CrackedEgg.transform.parent = m_ParentPan.transform;
             m_CrackedEgg.SetActive(true);
 
-            m_CookingAgent.AddReward(m_MLManager.m_IsEggOnPanPoints);
-
+            if (m_CookingAgent != null)
+            {
+                m_CookingAgent.AddReward(m_MLManager.m_IsEggOnPanPoints);
+            }
+           
             this.gameObject.SetActive(false);
         }
     }

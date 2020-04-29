@@ -14,9 +14,13 @@ public class PanSocket : Socket
         }
         else if (m_NegativeCollisionTag != "" && other.gameObject.tag == m_NegativeCollisionTag)
         {
-            m_CookingAgent.SetReward(-1);
-            Debug.Log("End");
-            m_CookingAgent.EndEpisode();
+            if (m_CookingAgent != null)
+            {
+                m_CookingAgent.SetReward(-1);
+                Debug.Log("End");
+                m_CookingAgent.EndEpisode();
+            }
+
         }
     }
 

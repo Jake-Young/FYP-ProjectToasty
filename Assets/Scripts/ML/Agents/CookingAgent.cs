@@ -8,10 +8,11 @@ public class CookingAgent : Agent
     public MachineLearningManager m_MLManager;
     public Transform m_EndEffector;
     public Vector3 m_StartingPosition;
-    public Transform m_FollowMe;
+    public Transform m_FollowMe = null;
     public Animator m_AgentPlayback;
     public Animator m_GrabObjectPlayback;
     public bool m_IsLive;
+    public float m_TransformMultiplier;
 
     private float m_PreviousDistanceToPan;
     private float m_PreviousDistanceToEgg;
@@ -33,12 +34,12 @@ public class CookingAgent : Agent
         {
             if (m_AgentPlayback != null)
             {
-                m_AgentPlayback.Play("AgentClip", -1, 0.0f);
+                m_AgentPlayback.Play("AgentCookingClip_Teacher", -1, 0.0f);
             }
 
             if (m_GrabObjectPlayback != null)
             {
-                m_GrabObjectPlayback.Play("GrabObjectClip", -1, 0.0f);
+                m_GrabObjectPlayback.Play("GrabObjectCookingClip_Teacher", -1, 0.0f);
             }
         }
     }
@@ -77,39 +78,39 @@ public class CookingAgent : Agent
         // Target Position, 3
         Vector3 controlSignal = new Vector3(vectorAction[0], vectorAction[1], vectorAction[2]);
 
-        this.transform.localPosition = controlSignal * 1.25f;
+        this.transform.localPosition = controlSignal * m_TransformMultiplier;
 
         float distanceToPan = Vector3.Distance(this.transform.localPosition, m_MLManager.m_Pan.transform.localPosition);
         float distanceToEgg = Vector3.Distance(this.transform.localPosition, m_MLManager.m_UncrackedEggs[0].transform.localPosition);
         float distanceToFriedEgg = Vector3.Distance(this.transform.localPosition, m_MLManager.m_CrackEggs[0].transform.localPosition);
         float distanceToPlate = Vector3.Distance(this.transform.localPosition, m_MLManager.m_Plate.transform.localPosition);
 
-        if (distanceToPan >= 0.5f) 
-        { 
-            AddReward(0.5f / m_PreviousDistanceToPan); 
+        if (distanceToPan >= 0.5f)
+        {
+            AddReward(0.5f / m_PreviousDistanceToPan);
         }
         m_PreviousDistanceToPan = distanceToPan;
 
-        if (distanceToEgg >= 0.5f) 
-        { 
-            if (m_MLManager.m_UncrackedEggs[0].activeSelf) 
-            { 
-                AddReward(0.5f / m_PreviousDistanceToEgg); 
-            } 
+        if (distanceToEgg >= 0.5f)
+        {
+            if (m_MLManager.m_UncrackedEggs[0].activeSelf)
+            {
+                AddReward(0.5f / m_PreviousDistanceToEgg);
+            }
         }
         m_PreviousDistanceToEgg = distanceToEgg;
 
-        if (distanceToEgg >= 0.5f) 
-        { 
+        if (distanceToEgg >= 0.5f)
+        {
             if (m_MLManager.m_CrackEggs[0].activeSelf)
-            { 
-                AddReward(0.5f / m_PreviousDistanceToFriedEgg); 
-            } 
+            {
+                AddReward(0.5f / m_PreviousDistanceToFriedEgg);
+            }
         }
         m_PreviousDistanceToFriedEgg = distanceToFriedEgg;
 
-        if (distanceToPan >= 0.5f) 
-        { 
+        if (distanceToPan >= 0.5f)
+        {
             AddReward(0.5f / m_PreviousDistanceToPlate);
         }
         m_PreviousDistanceToPlate = distanceToPlate;
@@ -130,7 +131,8 @@ public class CookingAgent : Agent
         }
 
         if (!m_IsLive)
-        {
+        { 
+   /*     {
             if (this.transform.localPosition.x >= 4.0f || this.transform.localPosition.x <= -4.0f)
             {
                 Debug.Log("HEloo 1");
@@ -157,14 +159,15 @@ public class CookingAgent : Agent
                 EndEpisode();
             }
 
-            if (this.transform.position.z >= 3.0f || this.transform.position.z <= -3.0f)
+            if (this.transform.localPosition.z >= 3.0f || this.transform.localPosition.z <= -3.0f)
             {
                 Debug.Log("HEloo 3");
                 SetReward(-1);
                 if (!m_IsLive) { this.transform.localPosition = m_StartingPosition; }
 
                 EndEpisode();
-            }
+            }*/
+            
         }
         
     }
@@ -173,10 +176,9 @@ public class CookingAgent : Agent
     public override float[] Heuristic()
     {
         float[] actions = new float[4];
-
-        actions[0] = m_FollowMe.transform.position.x;
-        actions[1] = m_FollowMe.transform.position.y;
-        actions[2] = m_FollowMe.transform.position.z;
+        actions[0] = m_FollowMe.transform.localPosition.x;
+        actions[1] = m_FollowMe.transform.localPosition.y;
+        actions[2] = m_FollowMe.transform.localPosition.z;
 
         bool grab = m_MLManager.m_GrabObject;
 

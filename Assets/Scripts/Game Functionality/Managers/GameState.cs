@@ -33,7 +33,6 @@ public class GameState : MonoBehaviour
 
     public void ResetGameState()
     {
-        m_GamePoints = 0.0f;
         m_DidPlayerWin = false;
         m_IsGameOver = false;
     }

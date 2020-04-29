@@ -3,6 +3,7 @@ using MLAgents;
 
 public class DroppedItemListener : MonoBehaviour
 {
+    public MachineLearningManager m_MLManager;
     public Agent m_CookingAgent;
     public int m_IsDroppedPoints;
 
@@ -11,9 +12,16 @@ public class DroppedItemListener : MonoBehaviour
         // End episode and provide points  
         if (collision.gameObject.layer == 9 || collision.gameObject.layer == 11)
         {
-            //m_CookingAgent.SetReward(m_IsDroppedPoints);
             Debug.Log("Floor");
-            m_CookingAgent.EndEpisode();
+            //m_CookingAgent.SetReward(m_IsDroppedPoints);
+            if (m_CookingAgent != null)
+            {
+                m_CookingAgent.EndEpisode();
+            }
+            else
+            {
+                m_MLManager.EnvironmentReset();
+            }
         }
     }
 }

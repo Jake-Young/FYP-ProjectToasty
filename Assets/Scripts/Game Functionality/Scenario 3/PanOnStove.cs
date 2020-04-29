@@ -17,13 +17,17 @@ public class PanOnStove : MonoBehaviour
             m_MLManager.m_IsPanOnStove = m_PanIsOnStove;
             m_MLManager.m_GameState.m_GamePoints += m_MLManager.m_IsPanOnStovePoints;
         }
-        else if (m_MLManager != null) 
+        else if (m_Listener != null) 
         {
             m_Listener.m_IsPanOnStove = m_PanIsOnStove;
             m_Listener.m_GameState.m_GamePoints += m_Listener.m_IsPanOnStovePoints;
+            m_Listener.ResetGrabber();
         }
         
-        m_Agent.AddReward(m_Listener.m_IsPanOnStovePoints);
+        if (m_Agent)
+        {
+            m_Agent.AddReward(m_Listener.m_IsPanOnStovePoints);
+        }
     }
 
     public void PanIsOffStove ()

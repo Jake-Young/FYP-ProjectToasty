@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using MLAgents;
+using TMPro;
 
 public class GrabberEnvironmentListener : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class GrabberEnvironmentListener : MonoBehaviour
     [Header("Win/Lose Condition Values")]
     // Check Game State for win lose
     public GameState m_GameState;
+    public TMP_Text m_Scoreboard;
+    public bool m_IsPlayer;
+    public int m_SimNumber;
 
     private void Start()
     {
@@ -51,8 +55,17 @@ public class GrabberEnvironmentListener : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_IsPanOnStove)
+        if (m_IsPlayer)
         {
+            m_Scoreboard.text = "Player: " + m_GameState.m_GamePoints;
+        }
+        else
+        {
+            m_Scoreboard.text = "Sim " + m_SimNumber + ": " + m_GameState.m_GamePoints;
+        }
+
+        if (m_IsPanOnStove)
+        { 
             m_GameState.m_DidPlayerWin = true;
         }
     }

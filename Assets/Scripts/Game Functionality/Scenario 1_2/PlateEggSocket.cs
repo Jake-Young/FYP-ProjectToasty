@@ -18,10 +18,13 @@ public class PlateEggSocket : Socket
             else if (friedEgg.m_CurrentEggState == FriedEgg.EggState.Burnt || 
                      friedEgg.m_CurrentEggState == FriedEgg.EggState.RawEgg)
             {
-                m_MLManager.m_GameState.m_GamePoints = m_MLManager.m_IsBurntPoints;
-                m_CookingAgent.AddReward(m_MLManager.m_IsBurntPoints);
                 Debug.Log("End");
-                m_CookingAgent.EndEpisode();
+                m_MLManager.m_GameState.m_GamePoints = m_MLManager.m_IsBurntPoints;
+                if (m_CookingAgent != null)
+                {
+                    m_CookingAgent.AddReward(m_MLManager.m_IsBurntPoints);
+                    m_CookingAgent.EndEpisode();
+                }
             }
         }
     }

@@ -68,7 +68,10 @@ public class CookEgg : MonoBehaviour
             {
                 m_IsEggOnPan = true;
                 m_MachineLearningManager.m_IsEggOnPan = m_IsEggOnPan;
-                AddEggIsOnPanPoints();
+                if (m_CookingAgent != null)
+                {
+                    AddEggIsOnPanPoints();
+                }
 
                 m_FriedEgg = other.gameObject.GetComponent<FriedEgg>();
             }
